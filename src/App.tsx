@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextBox } from './TextBox';
 import { ItemsLeft } from './ItemsLeft';
 import { FilterButton } from './FilterButton';
-import { Button } from './Button';
+import { ClearButton } from './ClearButton';
 import './style.css';
 import { ListItem } from './ListItem';
 
@@ -11,13 +11,12 @@ function App() {
   const ALL:string = 'All';
   const ACTIVE:string = 'Active';
   const COMPLETED:string = 'Completed';
-  const CLEAR_COMPLETED:string = 'Clear completed';
-  
+
   const [tasks, setTasks] = useState<Array<Task>>([]);
   const [displayStatus,setDisplayStatus] = useState<string>(ALL);
 
 
-  const addTask: addTask = (taskContent) => {
+  const addTask = (taskContent:string) => {
     taskContent && setTasks([...tasks, {
       id: 'task' + tasks.length,
       content: taskContent,
@@ -36,16 +35,17 @@ function App() {
   const editListItem = (text: string, id: string) => {
     let editedTaskIndex: number = tasks.findIndex(task => task.id === id);
     tasks[editedTaskIndex].content = text;
+    tasks[editedTaskIndex].isCompleted = false;
     setTasks(tasks);
   }
 
-  const checkCheckBox: CheckCheckBox = (id) => {
+  const checkCheckBox: OnCheck = (id) => {
     const checkBoxIndex: number = tasks.findIndex(task => task.id === id);
     tasks[checkBoxIndex].isCompleted = !tasks[checkBoxIndex].isCompleted;
     setTasks(tasks);
   }
 
-  const deleteTask: CheckCheckBox = (id) => {
+  const deleteTask: OnCheck = (id) => {
     const deletedTaskIndex: Array<Task> = tasks.filter(task => task.id !== id);
     setTasks(deletedTaskIndex);
   }
@@ -53,17 +53,17 @@ function App() {
   return (
     <div className='toDoList'>
       <h1>TO DO LIST</h1>
-      <TextBox textBox={{ addTask: addTask }} />
+      <TextBox onSubmit= {addTask} />
       <div className='listItemContainer' >
         {(displayStatus === ALL ? tasks
         :displayStatus === ACTIVE ? tasks.filter((task) => task.isCompleted === false)
         :tasks.filter((task) => task.isCompleted)).map((task, index) => 
        <ListItem
         key={task.id}
-        onEdit={editListItem}
-        listItem={task}
-        checkCheckBox={checkCheckBox}
-        deleteTask={deleteTask}/>
+        onChange={editListItem}
+        task={task}
+        onCheck={checkCheckBox}
+        onDelete={deleteTask}/>
         )}
       </div>
       <div className='footer'>
@@ -83,8 +83,7 @@ function App() {
         onClick={updateTaskDisplayStatus} 
         status={displayStatus}
         />
-         <Button
-        value = {CLEAR_COMPLETED}
+         <ClearButton
         onClick={deleteCompleted} />
       </div>
     </div>

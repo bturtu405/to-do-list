@@ -1,33 +1,35 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent } from 'react';
 
 interface ListItemProps {
-  listItem: Task;
-  checkCheckBox: CheckCheckBox;
-  deleteTask:CheckCheckBox;
-  onEdit:onEdit;
+  task: Task;
+  onCheck: OnCheck;
+  onDelete: OnCheck;
+  onChange: OnEdit;
 }
 
 export const ListItem: React.FC<ListItemProps> = (props) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const [isDone, setIsDone] = useState<boolean>(props.listItem.isCompleted);
+  const [isDone, setIsDone] = useState<boolean>(props.task.isCompleted);
   const [isDisable,setIsDisable] = useState<boolean>(true);
-  const [text,setText] =useState<string>(props.listItem.content);
+  const [text,setText] = useState<string>(props.task.content);
   
   const handleCheck = () => {
-    props.checkCheckBox(props.listItem.id);
+    props.onCheck(props.task.id);
     setIsDone(!isDone);
   }
 
   const handleDoubleClick = () =>{ 
     if(isDisable){
       setIsDisable(false);
+      setIsDone(false);
     }else{
-     text ? props.onEdit(text,props.listItem.id) : deleteItem();
+     text ? props.onChange(text,props.task.id) : deleteItem();
      setIsDisable(true);
+     setIsDone(false);
     }
   }
   const deleteItem = () =>{
-    props.deleteTask(props.listItem.id);
+    props.onDelete(props.task.id);
   }
 
   const handleChange = (event:ChangeEvent<HTMLInputElement>) =>{
@@ -35,23 +37,26 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
   }
 
   return (
-    <div onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <div 
+      onMouseEnter = {() => setIsHovered(true)}
+      onMouseLeave = {() => setIsHovered(false)}
       onDoubleClick = {handleDoubleClick}
-      className='listItem'
-      id={props.listItem.id} >
-      <input onClick={handleCheck} type='checkbox'  checked = {isDone} />
-
+      className = 'listItem'
+      id={props.task.id} >
+      <input 
+      onClick = {handleCheck} 
+      type='checkbox'  
+      checked = {isDone} />
       <input
-      onChange={handleChange}
-      className={(isDone && isDisable ? 'line-through ' :'')
+      onChange = {handleChange}
+      className = {(isDone && isDisable ? 'line-through ' :'')
       +(isDisable ? 'taskUneditable' :'taskContent') }
       type='text'
-      readOnly={isDisable}
-      value={text}/>
+      readOnly = {isDisable}
+      value = {text}/>
 
-      <input onClick ={deleteItem}  
-      className={'deleteButton ' + (!isHovered ? 'hidden' : '')} 
+      <input onClick = {deleteItem}  
+      className = {'deleteButton ' + (!isHovered ? 'hidden' : '')} 
       type='button' value='x' />
     </div>
   );

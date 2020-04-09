@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from 'react';
 
 interface ItemsLeftProps{
   numberOfTasks: number; 
@@ -6,6 +6,6 @@ interface ItemsLeftProps{
 
 export const ItemsLeft: React.FC<ItemsLeftProps>= (props) => {
   return (
-   <label className = "itemsLeft" >{props.numberOfTasks} tasks</label>
+   <label className = 'itemsLeft' >{props.numberOfTasks} tasks</label>
   );
 };

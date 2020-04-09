@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React from 'react';
 
-interface FilterButtonProperty{
-  onClick:onClick;
-  value:string;
-  status:string;
+interface FilterButtonProperty {
+  onClick: OnClick;
+  value: string;
+  status: string;
 }
 
-export const FilterButton: React.FC<FilterButtonProperty> = ({onClick,value,status}) => {
+export const FilterButton: React.FC<FilterButtonProperty> = (props) => {
 
 
   const handleClick = () => {
-    onClick(value);
+    props.onClick(props.value);
   }
 
   return (
-   <input onClick={handleClick} 
-    className={(status===value ? 'chosen':'filterButton')}
-    value={value} type="button"/>
+    <input onClick = {handleClick}
+      className = {(props.status === props.value ? 'chosen' : 'filterButton')}
+      value = {props.value} type = 'button' />
   );
 };

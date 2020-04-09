@@ -9,6 +9,15 @@
   text-align: center;
 }
 
+.textBox {
+  width: 35rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  height: 2rem;
+  margin-bottom: 1rem;
+}
+
 .footer {
   border-radius: 0.5rem;
   width: 41rem;
@@ -19,35 +28,15 @@
   margin-top: 1rem;
 }
 
-.itemsLeft {
-  float: left;
-  font-size: 2rem;
-}
+.listItemContainer {
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  height: 10rem;
+  width: 41rem;
+  margin-left: 2.1rem;
+  overflow-y: auto;
 
-.filterButton {
-  background-image: -webkit-linear-gradient(top, #3D94F6, #1E62D0);
-  border-radius: 0.4rem;
-  color: #ffffff;
-  font-size: 1.2rem;
-  float: bottom;
-  font-weight: bold;
-  padding: 0.4rem 0.5rem;
-  text-decoration: none;
 }
-
-.clearCompletedButton {
-  background-image: -webkit-linear-gradient(top, #3D94F6, #1E62D0);
-  border-radius: 0.4rem;
-  color: #ffffff;
-  font-size: 1.2rem;
-  float: bottom;
-  font-weight: bold;
-  margin-right: 1rem;
-  padding: 0.4rem 0.5rem;
-  text-decoration: none;
-  float: right;
-}
-
 
 .listItem {
   border-radius: 0.5rem;
@@ -76,15 +65,23 @@
   font-size: 1.4rem;
 }
 
-.taskContent{
-  height: 1.5rem;
-  font-size: 1.5rem;
-  width:37rem ;
+.taskContent {
+  height: 1.4rem;
+  font-size: 1.4rem;
+  width: 34rem;
 }
 
-.chosen{
+.taskUneditable {
+  border: none;
+  height: 1.4rem;
+  width: 34rem;
+  font-size: 1.4rem;
+  background-image: -webkit-linear-gradient(top, #3D94F6, #1E62D0);
+}
+
+.chosen {
   background: linear-gradient(to bottom, #66ffff 20%, #66ccff 100%);
-  color:black;
+  color: black;
   border-radius: 0.4rem;
   font-size: 1.2rem;
   float: bottom;
@@ -93,31 +90,33 @@
   text-decoration: none;
 }
 
-.taskUneditable{
-  border: none;
-  height: 1.5rem;
-  width: 34rem;
-  font-size: 1.5rem;
-  background-image: -webkit-linear-gradient(top, #3D94F6, #1E62D0);  
+.filterButton {
+  background-image: -webkit-linear-gradient(top, #3D94F6, #1E62D0);
+  border-radius: 0.4rem;
+  color: #ffffff;
+  font-size: 1.2rem;
+  float: bottom;
+  font-weight: bold;
+  padding: 0.4rem 0.5rem;
+  text-decoration: none;
 }
 
-.listItemContainer {
-  border-radius: 0.5rem;
-  background-color: #ffffff;
-  height: 10rem;
-  width: 41rem;
-  margin-left: 2.1rem;
-  overflow-y:auto;
-  
+.clearCompletedButton {
+  background-image: -webkit-linear-gradient(top, #3D94F6, #1E62D0);
+  border-radius: 0.4rem;
+  color: #ffffff;
+  font-size: 1.2rem;
+  float: bottom;
+  font-weight: bold;
+  margin-right: 1rem;
+  padding: 0.4rem 0.5rem;
+  text-decoration: none;
+  float: right;
 }
 
-.textBox {
-  width: 35rem;
-  font-size: 1.5rem;
-  border-radius: 0.5rem;
-  margin-top: 1rem;
-  height: 2rem;
-  margin-bottom: 1rem;
+.itemsLeft {
+  float: left;
+  font-size: 2rem;
 }
 
 input[type='checkbox'] {

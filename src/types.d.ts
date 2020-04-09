@@ -4,14 +4,12 @@ content: string;
 isCompleted:boolean;
 };
 
-type addTask = (taskContent:string) => void;
+type OnSubmitTextBox = (content:string) => void;
 
-type TextBox = {
-addTask:addTask;
-};
+type OnCheck = (id:string) => void;
 
-type CheckCheckBox = (id:string) => void;
+type OnEdit = (text:string,id:string) => void;
 
-type onEdit = (text:string,id:string) => void;
+type OnClick = (value:string) => void;
 
-type onClick = (value:string) => void;
+type OnClickClearButton = () => void;

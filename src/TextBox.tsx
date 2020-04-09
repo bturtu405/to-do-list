@@ -1,10 +1,10 @@
 import React, { useState, ChangeEvent } from 'react';
 
 interface TextBoxProps {
-  textBox: TextBox;
+  onSubmit: OnSubmitTextBox;
 }
 
-export const TextBox: React.FC<TextBoxProps> = ({ textBox }) => {
+export const TextBox: React.FC<TextBoxProps> = ({ onSubmit }) => {
   const [text, setText] = useState<string>('');
 
  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -13,16 +13,16 @@ export const TextBox: React.FC<TextBoxProps> = ({ textBox }) => {
 
   const handleSubmit = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if(event.key === 'Enter'){
-    textBox.addTask(text);
+    onSubmit(text);
     setText('');
     }
   }
 
   return (
     <input  onKeyDown = {handleSubmit}
-     onChange={handleChange} 
-     value={text} 
-     className='textBox' 
-     type='text' />
+     onChange = {handleChange} 
+     value = {text} 
+     className = 'textBox' 
+     type = 'text' />
   );
 };
