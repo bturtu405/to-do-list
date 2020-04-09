@@ -7,7 +7,7 @@ import './style.css';
 import { ListItem } from './ListItem';
 
 
-function App() {
+const App = () => {
   const ALL:string = 'All';
   const ACTIVE:string = 'Active';
   const COMPLETED:string = 'Completed';
@@ -24,15 +24,21 @@ function App() {
     }]);
   }
 
+  const getTasks = () => {
+    return displayStatus === ALL ? tasks
+      :displayStatus === ACTIVE ? tasks.filter((task) => task.isCompleted === false)
+      :tasks.filter((task) => task.isCompleted)
+  }
+
   const deleteCompleted = () =>{
     setTasks(tasks.filter((task)=> task.isCompleted === false ));
-  }
+  } 
 
  const updateTaskDisplayStatus = (status:string) =>{
     setDisplayStatus(status);
   }
 
-  const editListItem = (text: string, id: string) => {
+  const editListItem: OnEdit = (text, id) => {
     let editedTaskIndex: number = tasks.findIndex(task => task.id === id);
     tasks[editedTaskIndex].content = text;
     tasks[editedTaskIndex].isCompleted = false;
@@ -45,7 +51,7 @@ function App() {
     setTasks(tasks);
   }
 
-  const deleteTask: OnCheck = (id) => {
+  const deleteTask: OnClick = (id) => {
     const deletedTaskIndex: Array<Task> = tasks.filter(task => task.id !== id);
     setTasks(deletedTaskIndex);
   }
@@ -55,9 +61,7 @@ function App() {
       <h1>TO DO LIST</h1>
       <TextBox onSubmit= {addTask} />
       <div className='listItemContainer' >
-        {(displayStatus === ALL ? tasks
-        :displayStatus === ACTIVE ? tasks.filter((task) => task.isCompleted === false)
-        :tasks.filter((task) => task.isCompleted)).map((task, index) => 
+        {getTasks().map((task, index) => 
        <ListItem
         key={task.id}
         onChange={editListItem}
