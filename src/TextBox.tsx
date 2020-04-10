@@ -7,11 +7,11 @@ interface TextBoxProps {
 export const TextBox: React.FC<TextBoxProps> = ({ onSubmit }) => {
   const [text, setText] = useState<string>('');
 
- const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+ const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setText(event.target.value);
   }
 
-  const handleSubmit = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleSubmit = (event: React.KeyboardEvent<HTMLDivElement>): void => {
     if(event.key === 'Enter'){
     onSubmit(text);
     setText('');

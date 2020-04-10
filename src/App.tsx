@@ -7,7 +7,7 @@ import './style.css';
 import { ListItem } from './ListItem';
 
 
-const App = () => {
+const App : React.FC = () => {
   const ALL:string = 'All';
   const ACTIVE:string = 'Active';
   const COMPLETED:string = 'Completed';
@@ -16,7 +16,7 @@ const App = () => {
   const [displayStatus,setDisplayStatus] = useState<string>(ALL);
 
 
-  const addTask = (taskContent:string) => {
+  const addTask = (taskContent:string):void => {
     taskContent && setTasks([...tasks, {
       id: 'task' + tasks.length,
       content: taskContent,
@@ -24,17 +24,17 @@ const App = () => {
     }]);
   }
 
-  const getTasks = () => {
+  const getTasks = ():Array<Task> => {
     return displayStatus === ALL ? tasks
       :displayStatus === ACTIVE ? tasks.filter((task) => task.isCompleted === false)
       :tasks.filter((task) => task.isCompleted)
   }
 
-  const deleteCompleted = () =>{
+  const deleteCompleted = ():void =>{
     setTasks(tasks.filter((task)=> task.isCompleted === false ));
   } 
 
- const updateTaskDisplayStatus = (status:string) =>{
+ const updateTaskDisplayStatus = (status:string):void =>{
     setDisplayStatus(status);
   }
 

@@ -9,7 +9,7 @@ interface FilterButtonProperty {
 export const FilterButton: React.FC<FilterButtonProperty> = (props) => {
 
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     props.onClick(props.value);
   }
 

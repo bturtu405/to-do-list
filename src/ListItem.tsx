@@ -21,7 +21,6 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
   const handleDoubleClick = () =>{ 
     if(isDisable){
       setIsDisable(false);
-      setIsDone(false);
     }else{
      text ? props.onChange(text,props.task.id) : deleteItem();
      setIsDisable(true);
