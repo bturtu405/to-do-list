@@ -72,13 +72,13 @@ const App: React.FC = () => {
       </div>
       <div className='footer'>
         <ItemsLeft numberOfTasks={tasks.length} />
-        {STATUSES.forEach((status: string): void => {
+        {STATUSES.map((status: string) =>
           <FilterButton
             value={status}
             onClick={updateTaskDisplayStatus}
             status={displayStatus}
           />
-        })}
+        )}
         <ClearButton
           onClick={deleteCompleted} />
       </div>
