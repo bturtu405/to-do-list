@@ -6,15 +6,15 @@ interface ClearButtonProperty {
 
 export const ClearButton: React.FC<ClearButtonProperty> = ({ onClick }) => {
   const CLEAR_COMPLETED: string = 'Clear completed';
-  const handleClick = () => {
+  const handleClick = (): void => {
     onClick();
   }
 
   return (
     <input
-      onClick = {handleClick}
-      className = 'clearCompletedButton'
-      value = {CLEAR_COMPLETED}
-      type = 'button' />
+      onClick={handleClick}
+      className='clearCompletedButton'
+      value={CLEAR_COMPLETED}
+      type='button' />
   );
 };

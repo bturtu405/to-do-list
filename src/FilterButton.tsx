@@ -14,8 +14,8 @@ export const FilterButton: React.FC<FilterButtonProperty> = (props) => {
   }
 
   return (
-    <input onClick = {handleClick}
-      className = {(props.status === props.value ? 'chosen' : 'filterButton')}
-      value = {props.value} type = 'button' />
+    <input onClick={handleClick}
+      className={(props.status === props.value ? 'chosen' : 'filterButton')}
+      value={props.value} type='button' />
   );
 };
